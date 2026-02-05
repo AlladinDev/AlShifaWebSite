@@ -8,6 +8,7 @@ type navMiddleItemsType = {
 export const Navbar = () => {
     const navItemSelectedStyling = "relative before:absolute before:-bottom-1 before:rounded-full before:w-full before:bg-primary before:h-1"
 
+    const [sideBarOpened, setSideBarOpened] = useState(false)
     const [selectedNavItem, selectNavItem] = useState("Home")
     const navItems: navMiddleItemsType[] = [
         {
@@ -39,7 +40,7 @@ export const Navbar = () => {
                 <div className="hidden  cursor-pointer lg:block ">
                     <ul className="flex  justify-around  transition-all duration-900 items-center gap-12">
                         {navItems.map((item, key) => (
-                            <li key={key} onClick={()=>selectNavItem(item.ItemName)} className={`${item.ItemName == selectedNavItem ? navItemSelectedStyling : ""}`}>{item.ItemName}</li>
+                            <li key={key} onClick={() => selectNavItem(item.ItemName)} className={`${item.ItemName == selectedNavItem ? navItemSelectedStyling : ""}`}>{item.ItemName}</li>
                         ))}
                     </ul>
                 </div>
@@ -49,9 +50,21 @@ export const Navbar = () => {
                             <Calendar /> Make An Appointment
                         </Button>
                     </div>
-                    <Menu className="lg:hidden" size={35} />
+                    <Menu onClick={() => setSideBarOpened(!sideBarOpened)} className="lg:hidden" size={35} />
                 </div>
+                 <div className={`shadow-md shadow-gray-200 border border-gray-500 overflow-hidden bg-[#bddcf4]  text-black z-50  absolute  rounded-md transition-all duration-700 whitespace-nowrap  h-0 ${sideBarOpened?"w-[90%] h-[80vh]":"w-0 h-0"}  top-0 right-0`}>
+                    <Button className="m-4 p-6 " onClick={() => setSideBarOpened(!sideBarOpened)}><Menu className="size-10 " /></Button>
+                    <div className="flex justify-center items-center flex-col space-y-12">
 
+                        <ul className="flex font-bold  justify-center  flex-col transition-all duration-900 items-center gap-12">
+                            {navItems.map((item, key) => (
+                                <li key={key} >{item.ItemName}</li>
+                            ))}
+                        </ul>
+                        <Button  className="bg-primary px-12 py-2">Make An Appointment</Button>
+                    </div>
+                    <div></div>
+                </div>
 
             </div>
         </header>
