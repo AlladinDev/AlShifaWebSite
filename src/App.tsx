@@ -2,15 +2,26 @@
 import { MainSection } from './Screens/Main/Main'
 import "./App.css"
 import { About } from './Screens/About/About'
+import { Appointment } from './Screens/Appointment/Appointment'
+import FAQSection from './Screens/Faqs/Faqs'
+import Footer from './Screens/Footer/Footer'
+import { Navbar } from './Screens/Navbar/Navbar'
+import { Layout } from './Screens/Layout/Layout'
 function App() {
 
 
- 
+
   return (
     <>
-      <div className='p-2 font-serif relative h-dvh'  >
-        <MainSection />
-        <About/>
+      <div className=''  >
+        <Layout>
+          <MainSection />
+          <About />
+          <Appointment />
+          <FAQSection />
+          <Footer />
+
+        </Layout>
       </div>
 
     </>

@@ -31,8 +31,7 @@ export const Navbar = () => {
 
 
     return (
-        <header className="header font-medium w-full  sticky top-0 z-50 duration-900   ">
-
+        <header className="header font-medium  rounded-md sticky top-2 z-20 duration-900 ">
             <div className="text-(--text-black-foreground) flex items-center justify-between  rounded-md px-10  bg-(--black-colour)">
                 <div className="w-full max-w-60  lg:w-1/8 text-center bg-primary relative -mb-2 -mt-1.5 inline-block rounded-b-sm  px-6 py-7  before:absolute before:-right-1 before:top-0.5 before:-z-1 before:size-2 before:rotate-45 before:bg-primary after:absolute after:-left-1 after:top-0.5 after:-z-1 after:size-2 after:rotate-45 after:bg-primary  after:block">
                     <h1 className="font-bold text-md flex justify-center items-center gap-2"><img src={cliniclogo} className="size-8 rounded-full" />  AlShifa</h1>

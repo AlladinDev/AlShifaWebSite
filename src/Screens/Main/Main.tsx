@@ -1,12 +1,10 @@
 
 import { P } from "@/CustomComponents/P"
-import { Navbar } from "../Navbar/Navbar"
 import heroimg from "../../assets/hero-img.png"
 import { Button } from "@/components/ui/button"
 export const MainSection = () => {
     return (
-        <div className='px-4 min-h-full py-4 bg-[#b7d8f4] flex flex-col '>
-            <Navbar />
+        <div className=' min-h-full py-4 bg-[#b7d8f4] flex flex-col '>
             <div className="flex justify-center items-between flex-col lg:flex-row">
                 <div className="w-full lg:w-1/2 h-full pt-20 lg:pt-40 px-4">
                     <div>
@@ -37,7 +35,7 @@ export const MainSection = () => {
                             <img className="-ml-4 size-15 lg:size-20 rounded-full  " src={"https://healthora-nextjs.vercel.app/images/avatar1.png?dpl=dpl_5VpNQ2H4S8wfjwyHFuvJwiug8jQL"} alt="" />
                             <img className="-ml-4 size-15 lg:size-20 rounded-full  " src={"https://healthora-nextjs.vercel.app/images/avatar2.png?dpl=dpl_5VpNQ2H4S8wfjwyHFuvJwiug8jQL"} alt="" />
                         </div>
-                        <div className="text-white p-4 w-48 ">
+                        <div className="text-white p-2 w-48 ">
                             <h3 className="font-bold text-2xl">120+</h3>
                             <h2 className="font-semibold mt-1">Patients Registered</h2>
                         </div>
