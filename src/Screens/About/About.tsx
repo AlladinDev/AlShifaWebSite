@@ -1,4 +1,4 @@
-import { CalendarCheck, Clock, Contact, HeartIcon, HeartPlus, Hospital, Shield, UserCheck } from "lucide-react"
+import { CalendarCheck, Clock, HeartPlus, Shield, UserCheck } from "lucide-react"
 import aboutImg1 from "../../assets/about-img1.png"
 import aboutImg2 from "../../assets/about-img2.png"
 
