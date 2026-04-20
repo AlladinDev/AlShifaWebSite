@@ -1,6 +1,6 @@
 import { Calendar } from "@/components/ui/calendar"
 import { useEffect, useState } from "react"
-import { UseAppointmentState } from "../Hooks/UseAppointmentState"
+import { useAppointmentStore } from "../Hooks/useAppointmentState"
 import { FetchBookedSlots } from "@/Service/Appointments/Appointment"
 
 type ISlotsBooked = {
@@ -26,7 +26,7 @@ const parseBookedDates = (data: ISlotsBooked[]) => {
 }
 
 export const AppointmentDateSelector = () => {
-    const { formState, updateFormState } = UseAppointmentState()
+    const { formState, updateFormState } = useAppointmentStore()
     const [bookedDates, setBookedDates] = useState<Date[]>([])
 
     useEffect(() => {

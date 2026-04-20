@@ -1,15 +1,18 @@
 import { Eye, Headset, ShieldIcon, Users } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { UseAppointmentState } from "../Hooks/UseAppointmentState";
+import { useAppointmentStore } from "../Hooks/useAppointmentState";
 import { FormInput } from "@/CustomComponents/FormInput";
 import { ClinicSelection } from "../ClinicSelectionModel/ClinicSelection";
 import { AppointmentDateSelector } from "../AppointmentDate/AppointmentDate";
 
 
 export const AppointmentForm = () => {
-    const { formState, updateFormState } = UseAppointmentState()
-
+    //formState, updateFormState ,
+    const {formState,updateFormState} = useAppointmentStore()
+   
+   
+    console.log("inside appontment form",formState.data)
     return (
 
         <Card className="p-2 flex justify-between items-center flex-col lg:flex-row">
@@ -102,12 +105,12 @@ export const AppointmentForm = () => {
 
                         {/* Address */}
                         <div className="">
-                            <FormInput name="address" placeHolder="Enter your address" label="Patient Address" value={formState.data.patientAddress} changeHandler={updateFormState as any} inputType="text" />
+                            <FormInput name="patientAddress" placeHolder="Enter your address" label="Patient Address" value={formState.data.patientAddress} changeHandler={updateFormState as any} inputType="text" />
                         </div>
 
                         {/* Doctor Name */}
                         <div >
-                            <FormInput name="Mobile Number" label="Patient Mobile" placeHolder="Enter patient mobile number" value={formState.data.patientMobile} changeHandler={updateFormState as any} inputType="text" />
+                            <FormInput name="patientMobile" label="Patient Mobile" placeHolder="Enter patient mobile number" value={formState.data.patientMobile} changeHandler={updateFormState as any} inputType="text" />
                         </div>
 
                         {/* Clinic Name */}
@@ -117,8 +120,8 @@ export const AppointmentForm = () => {
 
                         {/* Appointment Date */}
                         <div className="my-4 flex justify-center  flex-col items-center border-2 p-4 border-gray-400 rounded-md">
-                           <label htmlFor="">Select Appointment Date</label>
-                           <AppointmentDateSelector/>
+                            <label htmlFor="">Select Appointment Date</label>
+                            <AppointmentDateSelector />
                         </div>
 
                         {/* Submit Button */}

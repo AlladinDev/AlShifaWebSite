@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@fontsource/roboto": "^5.2.9",
+    "@preact/signals": "^2.9.0",
     "@radix-ui/react-slot": "^1.2.4",
     "@tailwindcss/vite": "^4.1.18",
     "axios": "^1.13.5",
@@ -23,8 +24,10 @@
     "react": "^19.2.0",
     "react-day-picker": "^9.13.2",
     "react-dom": "^19.2.0",
+    "react-hot-toast": "^2.6.0",
     "tailwind-merge": "^3.4.0",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "zustand": "^5.0.12"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button"
-import { Calendar, Menu } from "lucide-react"
+import { LogIn, Menu } from "lucide-react"
 import cliniclogo from "../../../public/clinic.jpg"
 import { useState } from "react"
+import { Register } from "../Auth/Register"
+import { Login } from "../Auth/Login/Login"
 type navMiddleItemsType = {
     ItemName: string
 }
@@ -45,23 +47,26 @@ export const Navbar = () => {
                     </ul>
                 </div>
                 <div className=" cursor-pointer w-80 flex justify-end   gap-2 lg:justify-end items-center ">
-                    <div className="hidden lg:block w-full max-w-62.5 h-full ">
-                        <Button className="py-6  w-full ">
-                            <Calendar /> Make An Appointment
-                        </Button>
+                    <div className="hidden  w-full lg:flex gap-4 max-w-62.5 h-full ">
+                        <Register />
+                        <Login />
                     </div>
                     <Menu onClick={() => setSideBarOpened(!sideBarOpened)} className="lg:hidden" size={35} />
                 </div>
-                 <div className={`shadow-md shadow-gray-200 border border-gray-500 overflow-hidden bg-[#bddcf4]  text-black z-50  absolute  rounded-md transition-all duration-700 whitespace-nowrap  h-0 ${sideBarOpened?"w-[90%] h-[80vh]":"w-0 h-0"}  top-0 right-0`}>
+                <div className={`shadow-md px-2 shadow-gray-200 border border-gray-500 overflow-hidden bg-[#bddcf4]  text-black z-50  absolute  rounded-md transition-all duration-700 whitespace-nowrap  h-0 ${sideBarOpened ? "w-[90%] h-dvh" : "w-0 h-0"}  top-0 right-0`}>
                     <Button className="m-4 p-6 " onClick={() => setSideBarOpened(!sideBarOpened)}><Menu className="size-10 " /></Button>
-                    <div className="flex justify-center items-center flex-col space-y-12">
+                    <div className="flex justify-center items-center flex-col">
 
                         <ul className="flex font-bold  justify-center  flex-col transition-all duration-900 items-center gap-12">
                             {navItems.map((item, key) => (
                                 <li key={key} >{item.ItemName}</li>
                             ))}
                         </ul>
-                        <Button  className="bg-primary px-12 py-2">Make An Appointment</Button>
+
+                        <div className="space-y-4 flex w-full mt-4 flex-col justify-center items-center">
+                            <Register  />
+                        <Login />
+                        </div>
                     </div>
                     <div></div>
                 </div>
