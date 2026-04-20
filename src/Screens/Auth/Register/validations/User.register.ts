@@ -1,4 +1,4 @@
-import { LIMITS } from "@/constants";
+import { LIMITS, MIN } from "@/constants";
 
 type UserForm = {
     name: string;
@@ -66,6 +66,10 @@ export function ValidateUserRegistration(form: UserForm): Errors|null {
         errors.password = "Password is required";
     } else if (form.password.length > LIMITS.password) {
         errors.password = "Password is too long";
+    }else if (form.password.length<MIN.password){
+        errors.password="Min Password should be 8 digits"
+    }else if(!form.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)){
+        errors.password="Password must be mix of alphabets,digits,and symbols"
     }
 
     ///now check here if errors is empty return null else return errors

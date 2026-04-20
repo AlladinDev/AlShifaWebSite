@@ -17,3 +17,7 @@ export const RegisterUserUrl=BaseApi+"/user"
     password: 100,
     email: 100,
   };
+
+export const MIN={
+  password:8
+}
