@@ -10,7 +10,7 @@ import {
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useState } from "react"
 import { User } from "./Register/User"
-import { Doctor } from "./Register/Doctor"
+import { DoctorForm } from "./Register/Doctor"
 import { Owner } from "./Register/Owner"
 export const Register = () => {
     const [userType, setUserType] = useState<string>("User")
@@ -29,7 +29,7 @@ export const Register = () => {
             case "Clinic Owner":
                 return <Owner />
             case "Doctor":
-                return <Doctor />
+                return <DoctorForm />
         }
     }
 

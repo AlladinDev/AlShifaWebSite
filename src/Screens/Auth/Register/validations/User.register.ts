@@ -25,7 +25,7 @@ export function ValidateUserRegistration(form: UserForm): Errors|null {
         errors.name = "Name is required";
     } else if (form.name.length < 2) {
         errors.name = "Name must be at least 2 characters";
-    } else if (form.name.length > LIMITS.name) {
+    } else if (form.name.length > LIMITS.MaxNameLength) {
         errors.name = "Name is too long";
     }
 
@@ -44,7 +44,7 @@ export function ValidateUserRegistration(form: UserForm): Errors|null {
         errors.address = "Address is required";
     } else if (form.address.length < 5) {
         errors.address = "Address is too short";
-    } else if (form.address.length > LIMITS.address) {
+    } else if (form.address.length > LIMITS.MaxAddressLength) {
         errors.address = "Address is too long";
     }
 
@@ -52,7 +52,7 @@ export function ValidateUserRegistration(form: UserForm): Errors|null {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!form.email.trim()) {
         errors.email = "Email is required";
-    } else if (form.email.length > LIMITS.email) {
+    } else if (form.email.length > LIMITS.MaxEmailLength) {
         errors.email = "Email is too long";
     } else if (!emailRegex.test(form.email)) {
         errors.email = "Enter a valid email";
@@ -64,7 +64,7 @@ export function ValidateUserRegistration(form: UserForm): Errors|null {
 
     if (!form.password) {
         errors.password = "Password is required";
-    } else if (form.password.length > LIMITS.password) {
+    } else if (form.password.length > LIMITS.MaxPasswordLength) {
         errors.password = "Password is too long";
     }else if (form.password.length<MIN.password){
         errors.password="Min Password should be 8 digits"

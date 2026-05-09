@@ -3,23 +3,52 @@ import { Card } from "@/components/ui/card"
 import { FormInput } from "@/CustomComponents/FormInput"
 import { useState } from "react"
 import { User, Phone, Mail, Lock, MapPin, Briefcase, GraduationCap, Stethoscope } from "lucide-react"
+import toast from "react-hot-toast"
+import { RegisterDoctor } from "@/Service/Auth/RegisterUser"
+import { ExtractErrorPayload } from "@/utils/ExtractErrorMsg"
+import { validateDoctor } from "./validations/Doctor.register"
+import type { IDoctor } from "./types/types"
 
-export const Doctor = () => {
-    const [userData, setUserData] = useState({
-        name: "",
-        address: "",
-        password: "",
-        email: "",
-        gender: "",
-        mobile: "",
-        experience: "",
-        workingAt: "",
-        qualifications: "",
-        post: ""
-    })
+const emptyUserData = {
+    name: "",
+    address: "",
+    password: "",
+    email: "",
+    gender: "",
+    mobile: "",
+    experience: "",
+    workingAt: "",
+    qualifications: "",
+    post: ""
+}
+export const DoctorForm = () => {
+    const [userData, setUserData] = useState<IDoctor>(emptyUserData)
+
+    const [formErrors, setFormErrors] = useState<IDoctor>(emptyUserData)
+
 
     const handleInputChange = ({ key, value }: { key: string, value: string }) => {
         setUserData({ ...userData, [key]: value })
+
+
+        //delete the error associated with this field
+        setFormErrors({ ...formErrors, [key]: "" })
+    }
+
+    const handleSubmit = () => {
+        console.log(userData)
+
+        //do some validations
+        const validationErrors = validateDoctor(userData)
+        if (validationErrors != null) {
+            setFormErrors(validationErrors as Record<keyof IDoctor, string>)
+            return
+        }
+        toast.promise(RegisterDoctor(userData), {
+            success: "Doctor Registered Successfully",
+            loading: "Registering Doctor....",
+            error: (err) => ExtractErrorPayload(err).message
+        })
     }
 
     return (
@@ -40,6 +69,7 @@ export const Doctor = () => {
                             inputType="text"
                             changeHandler={handleInputChange}
                             label="Full Name"
+                            error={formErrors.name}
                             name="name"
                             icon={<User size={18} />}
                         />
@@ -47,6 +77,7 @@ export const Doctor = () => {
                         <FormInput
                             value={userData.mobile}
                             inputType="tel"
+                            error={formErrors.mobile}
                             changeHandler={handleInputChange}
                             label="Mobile Number"
                             name="mobile"
@@ -56,6 +87,7 @@ export const Doctor = () => {
                         <FormInput
                             value={userData.email}
                             inputType="email"
+                            error={formErrors.email}
                             changeHandler={handleInputChange}
                             label="Email"
                             name="email"
@@ -65,6 +97,7 @@ export const Doctor = () => {
                         <FormInput
                             value={userData.password}
                             inputType="password"
+                            error={formErrors.password}
                             changeHandler={handleInputChange}
                             label="Password"
                             name="password"
@@ -75,6 +108,7 @@ export const Doctor = () => {
                     <FormInput
                         value={userData.address}
                         inputType="text"
+                        error={formErrors.address}
                         changeHandler={handleInputChange}
                         label="Address"
                         name="address"
@@ -94,8 +128,9 @@ export const Doctor = () => {
                             <option value="">Select Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
-                            <option value="na">Prefer not to say</option>
+                            <option value="NA">Prefer not to say</option>
                         </select>
+                        {formErrors.gender ? <span className="text-red-600">{formErrors.gender}</span> : null}
                     </div>
                 </div>
 
@@ -107,6 +142,7 @@ export const Doctor = () => {
                         <FormInput
                             value={userData.qualifications}
                             inputType="text"
+                            error={formErrors.qualifications}
                             changeHandler={handleInputChange}
                             label="Qualifications"
                             name="qualifications"
@@ -116,6 +152,7 @@ export const Doctor = () => {
                         <FormInput
                             value={userData.post}
                             inputType="text"
+                            error={formErrors.post}
                             changeHandler={handleInputChange}
                             label="Specialization / Role"
                             name="post"
@@ -125,6 +162,7 @@ export const Doctor = () => {
                         <FormInput
                             value={userData.experience}
                             inputType="number"
+                            error={formErrors.experience}
                             changeHandler={handleInputChange}
                             label="Years of Experience"
                             name="experience"
@@ -134,6 +172,7 @@ export const Doctor = () => {
                         <FormInput
                             value={userData.workingAt}
                             inputType="text"
+                            error={formErrors.workingAt}
                             changeHandler={handleInputChange}
                             label="Hospital / Clinic"
                             name="workingAt"
@@ -143,11 +182,11 @@ export const Doctor = () => {
                 </div>
 
                 {/* Button */}
-                <Button className="cursor-pointer w-full h-11 text-base font-medium">
+                <Button className="cursor-pointer w-full h-11 text-base font-medium" onClick={handleSubmit}>
                     Register
                 </Button>
 
-              
+
             </Card>
         </div>
     )
