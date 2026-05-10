@@ -5,9 +5,18 @@ export interface IDoctor {
   password: string;
   mobile: string;
   address: string;
-  gender:string,
+  gender: string,
   qualifications: string;
   experience: string;
-  workingAt:string;
+  workingAt: string;
   post: string;
+}
+
+export interface IOwner {
+  name: string;
+  email: string;
+  password: string;
+  mobile: string;
+  address: string;
+  gender: string,
 }

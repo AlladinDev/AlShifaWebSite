@@ -21,7 +21,7 @@ export default function FAQSection() {
             </h2>
           </div>
 
-            <div className="w-full lg:w-1/2">
+            <div className="w-full lg:w-1/2 ">
                 <Accordion type="single" collapsible className="space-y-4">
                     {/* Q1 */}
                     <AccordionItem
@@ -32,7 +32,7 @@ export default function FAQSection() {
                             <Info className="w-5 h-5 text-blue-500" />
                             How does this platform work?
                         </AccordionTrigger>
-                        <AccordionContent className="text-gray-600">
+                        <AccordionContent className="text-gray-600 p-3">
                             Our platform <span className="text-blue-600 font-semibold">connects patients with clinics</span>. Patients can browse verified clinics, view doctor availability, and book appointments online. Clinics manage their schedules and confirm bookings through the platform, making healthcare simple and reliable.
                         </AccordionContent>
                     </AccordionItem>
@@ -46,7 +46,7 @@ export default function FAQSection() {
                             <CalendarCheck className="w-5 h-5 text-green-500" />
                             How can I make an appointment?
                         </AccordionTrigger>
-                        <AccordionContent className="text-gray-600">
+                        <AccordionContent className="text-gray-600 p-3">
                             Fill out the <span className="text-green-600 font-semibold">appointment form</span> with your name, address, clinic, doctor (optional), and preferred date. The clinic receives your request and confirms the appointment — simple, fast, and stress-free.
                         </AccordionContent>
                     </AccordionItem>
@@ -60,7 +60,7 @@ export default function FAQSection() {
                             <Home className="w-5 h-5 text-purple-500" />
                             How can clinics register themselves?
                         </AccordionTrigger>
-                        <AccordionContent className="text-gray-600">
+                        <AccordionContent className="text-gray-600 p-3">
                             Clinics create an account, add details like <span className="text-purple-600 font-semibold">clinic name, address, specialties, and doctors</span>. After verification, they appear on the platform and can start receiving patient appointments.
                         </AccordionContent>
                     </AccordionItem>
@@ -74,7 +74,7 @@ export default function FAQSection() {
                             <UserCheck className="w-5 h-5 text-orange-500" />
                             How can doctors register themselves?
                         </AccordionTrigger>
-                        <AccordionContent className="text-gray-600">
+                        <AccordionContent className="text-gray-600 p-3">
                             Doctors link their profiles to registered clinics, add <span className="text-orange-600 font-semibold">specialties and availability</span>, allowing patients to book appointments directly with them.
                         </AccordionContent>
                     </AccordionItem>

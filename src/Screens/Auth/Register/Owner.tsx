@@ -3,75 +3,112 @@ import { Card } from "@/components/ui/card"
 import { FormInput } from "@/CustomComponents/FormInput"
 import { useState } from "react"
 import { User, Phone, Mail, Lock, MapPin } from "lucide-react"
+import validateOwnerData from "./validations/Owner.register"
+import type { IOwner } from "./types/types"
+import toast from "react-hot-toast"
+import { RegisterOwner } from "@/Service/Auth/RegisterUser"
+import { ExtractErrorPayload } from "@/utils/ExtractErrorMsg"
+
+const dummyUserDataFields = {
+    name: "",
+    mobile: "",
+    address: "",
+    password: "",
+    email: "",
+    gender: "",
+}
 
 export const Owner = () => {
-    const [userData, setUserData] = useState({
-        name: "",
-        mobile: "",
-        address: "",
-        password: "",
-        email: "",
-        gender: "",
-    })
+    const [userData, setUserData] = useState(dummyUserDataFields)
+
+    const [formErrors, setFormErrors] = useState(dummyUserDataFields)
+
 
     const handleChange = ({ key, value }: { key: string, value: string }) => {
         setUserData({ ...userData, [key]: value })
+
+        //also delete the error for this field
+        setFormErrors({ ...formErrors, [key]: "" })
     }
 
+
+    const handleSubmit = () => {
+        console.log(userData)
+
+
+        //do some validations
+        const validationErrors = validateOwnerData(userData)
+        if (validationErrors) {
+            setFormErrors({ ...formErrors, ...validationErrors })
+            return
+        }
+
+        toast.promise(RegisterOwner(userData), {
+            success: "Owner Registered Successfully",
+            error: (err) => ExtractErrorPayload(err).message,
+            loading: "Registering Owner..."
+        })
+
+    }
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50  p-1  md:p-4">
             <Card className="w-full max-w-2xl p-6 shadow-xl rounded-2xl ">
-                
+
                 <h5 className="text-center font-semibold text-2xl">
                     Register as Owner
                 </h5>
 
                 {/* Name */}
-                <FormInput 
+                <FormInput
                     value={userData.name}
                     inputType="text"
                     changeHandler={handleChange}
                     label="User Name"
+                    error={formErrors.name}
                     name="name"
                     icon={<User size={18} />}
                 />
 
                 {/* Address */}
-                <FormInput 
+                <FormInput
                     value={userData.address}
                     inputType="text"
                     changeHandler={handleChange}
                     label="Address"
+                    error={formErrors.address}
                     name="address"
                     icon={<MapPin size={18} />}
                 />
 
                 {/* Mobile */}
-                <FormInput 
+                <FormInput
                     value={userData.mobile}
                     inputType="tel"
                     changeHandler={handleChange}
                     label="Mobile Number"
+                    error={formErrors.mobile}
                     name="mobile"
                     icon={<Phone size={18} />}
                 />
 
                 {/* Email */}
-                <FormInput 
+                <FormInput
                     value={userData.email}
                     inputType="email"
                     changeHandler={handleChange}
                     label="Email"
+                    error={formErrors.email}
                     name="email"
                     icon={<Mail size={18} />}
                 />
 
                 {/* Password */}
-                <FormInput 
+                <FormInput
                     value={userData.password}
                     inputType="password"
                     changeHandler={handleChange}
                     label="Password"
+                    error={formErrors.password}
                     name="password"
                     icon={<Lock size={18} />}
                 />
@@ -95,11 +132,11 @@ export const Owner = () => {
                 </div>
 
                 {/* Button */}
-                <Button className="w-full h-11 text-base font-medium">
+                <Button className="w-full h-11 text-base font-medium" onClick={handleSubmit}>
                     Register
                 </Button>
 
-              
+
             </Card>
         </div>
     )
