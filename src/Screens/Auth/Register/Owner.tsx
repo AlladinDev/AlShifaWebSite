@@ -129,6 +129,8 @@ export const Owner = () => {
                         <option value="female">Female</option>
                         <option value="na">Prefer not to say</option>
                     </select>
+                     {formErrors.gender ? <span className="text-red-600">{formErrors.gender}</span> : null}
+
                 </div>
 
                 {/* Button */}

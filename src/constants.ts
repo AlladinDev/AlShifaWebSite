@@ -8,6 +8,9 @@ export const FetchBookedSlotsUrl = BaseApi + "/clinic/appointments/full"
 export const RegisterUserUrl = BaseApi + "/user"
 export const RegisterDoctorURL = BaseApi + "/doctor"
 export const RegisterOwnerURL= BaseApi + "/user"
+export const LoginDoctorURL= BaseApi + "/doctor/login"
+export const LoginOwnerURL= BaseApi + "/owner/login"
+export const LoginUserURL= BaseApi + "/user/login"
 
 
 //const limits for validation

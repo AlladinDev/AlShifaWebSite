@@ -35,7 +35,7 @@ export const Register = () => {
 
     return (
         <Dialog>
-            <DialogTrigger className="px-2 cursor-pointer w-full md:w-fit py-3 rounded-md bg-primary">Register</DialogTrigger>
+            <DialogTrigger className="px-8 cursor-pointer w-full md:w-fit py-3 rounded-md bg-primary">Register</DialogTrigger>
             <DialogContent className="min-h-[screen] px-1">
                 <DialogHeader >
                     <DialogTitle className="text-center">Register To Get Started</DialogTitle>
