@@ -1,6 +1,6 @@
 import { Calendar } from "@/components/ui/calendar"
 import { useEffect, useState } from "react"
-import { useAppointmentStore } from "../Hooks/useAppointmentState"
+import { useAppointmentStore } from "../Hooks/useAppointmentState.tsx"
 import { FetchBookedSlots } from "@/Service/Appointments/Appointment"
 
 type ISlotsBooked = {
