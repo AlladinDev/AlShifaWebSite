@@ -1,7 +1,7 @@
 import { Eye, Headset, ShieldIcon, Users } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useAppointmentStore } from "../Hooks/useAppointmentState.tsx";
+import { useAppointmentStore } from "@/Screens/Appointment/Hooks/useAppointmentState";
 import { FormInput } from "@/CustomComponents/FormInput";
 import { ClinicSelection } from "../ClinicSelectionModel/ClinicSelection";
 import { AppointmentDateSelector } from "../AppointmentDate/AppointmentDate";
