@@ -9,12 +9,12 @@ type IFormInput = {
     label?: string,
     icon?: React.ReactNode,
     placeHolder?: string,
-    changeHandler: ({ key, value }: { key: string, value: string }) => void
+    changeHandler: ({ key, value }: { key: string, value: string | File | File[] | null }) => void
 }
 export const FormInput = (props: IFormInput) => {
     const handleChange = (changeEvent: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = changeEvent.target
-      
+
         props.changeHandler({ key: name, value: value })
     }
 

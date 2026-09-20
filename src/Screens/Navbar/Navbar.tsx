@@ -1,15 +1,16 @@
 import { Button } from "@/components/ui/button"
-import { LogIn, Menu } from "lucide-react"
+import { Menu } from "lucide-react"
 import cliniclogo from "../../../public/clinic.jpg"
 import { useState } from "react"
-import { Register } from "../Auth/Register"
+
 import { Login } from "../Auth/Login/Login"
+import { useNavigate } from "react-router-dom"
 type navMiddleItemsType = {
     ItemName: string
 }
 export const Navbar = () => {
     const navItemSelectedStyling = "relative before:absolute before:-bottom-1 before:rounded-full before:w-full before:bg-primary before:h-1"
-
+    const navigate = useNavigate()
     const [sideBarOpened, setSideBarOpened] = useState(false)
     const [selectedNavItem, selectNavItem] = useState("Home")
     const navItems: navMiddleItemsType[] = [
@@ -48,8 +49,8 @@ export const Navbar = () => {
                 </div>
                 <div className=" cursor-pointer w-80 flex justify-end   gap-2 lg:justify-end items-center ">
                     <div className="hidden  w-full lg:flex gap-4 max-w-62.5 h-full ">
-                        <Register />
-                        <Login />
+                        <Button className="flex-1  py-6 text-xl" onClick={() => navigate('/onboarding')}>Register</Button>
+                        <Button className="flex-1 py-6 text-xl" >Dashboard</Button>
                     </div>
                     <Menu onClick={() => setSideBarOpened(!sideBarOpened)} className="lg:hidden" size={35} />
                 </div>
@@ -64,8 +65,8 @@ export const Navbar = () => {
                         </ul>
 
                         <div className="space-y-4 flex w-full mt-4 flex-col justify-center items-center">
-                            <Register  />
-                        <Login />
+                            <Button onClick={() => navigate("/onboarding")} />
+                            <Login />
                         </div>
                     </div>
                     <div></div>

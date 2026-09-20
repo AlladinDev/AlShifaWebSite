@@ -1,25 +1,21 @@
-import { FetchClinicsUrl } from "@/constants"
-import { ThunderApi } from "@/Service/Axios"
-import { useEffect, useState } from "react"
+
 import { ClinicCard } from "./Components/ClinicCards"
-import { H1 } from "@/CustomComponents/H1"
-import { H1Light } from "@/CustomComponents/H1Light"
 import { H2 } from "@/CustomComponents/H2"
 
 export const Clinics = () => {
-    const [filter, setFilter] = useState<string | number>("")
-    useEffect(() => {
-        const fetchClinicsFn = async () => {
-            try {
-                const response = await ThunderApi(null, FetchClinicsUrl, "get")
-                console.log(response)
-            }
-            catch (err) {
-                console.log("err")
-            }
-        }
-        fetchClinicsFn()
-    }, [filter])
+   // const [filter, setFilter] = useState<string | number>("")
+    // useEffect(() => {
+    //     const fetchClinicsFn = async () => {
+    //         try {
+    //             const response = await ThunderApi(null, FetchClinicsUrl, "get")
+    //             console.log(response)
+    //         }
+    //         catch (err) {
+    //             console.log("err")
+    //         }
+    //     }
+    //     fetchClinicsFn()
+    // }, [filter])
 
     const clinics = [
         {

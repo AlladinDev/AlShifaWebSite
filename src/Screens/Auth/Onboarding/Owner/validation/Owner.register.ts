@@ -1,7 +1,7 @@
 import { LIMITS } from "@/constants";
-import type { IOwner } from "../types/types";
+import type { IOwner } from "../types/Owner.types";
 
-const validateOwnerData = (formData: IOwner):Partial<Record<keyof IOwner,string>>|null => {
+const validateOwnerData = (formData: IOwner): Partial<Record<keyof IOwner, string>> | null => {
     const errors: Partial<Record<keyof IOwner, string>> = {};
 
     // Safe string helper
@@ -14,6 +14,8 @@ const validateOwnerData = (formData: IOwner):Partial<Record<keyof IOwner,string>
     const email = getString(formData.email);
     const password = getString(formData.password);
     const gender = getString(formData.gender);
+    const aadhaarNumber = getString(formData.aadhaarNumber)
+    const photo = formData.photo
 
     // Name Validation
     if (!name) {
@@ -26,6 +28,22 @@ const validateOwnerData = (formData: IOwner):Partial<Record<keyof IOwner,string>
 
     // Mobile Validation
     const mobileRegex = /^[0-9]+$/;
+
+
+    //aadhaar number validation
+    if (!aadhaarNumber) {
+        errors.aadhaarNumber = "Aadhaar number is required"
+    } else if (!mobileRegex.test(aadhaarNumber)) {
+        errors.aadhaarNumber = "Aadhaar number must contain only numbers";
+    } else if (aadhaarNumber.length !== 12) {
+        errors.aadhaarNumber = "Aadhaar number must be exactly 12 digits";
+    }
+
+    //photo validation
+    if(!photo){
+        errors.photo="Profile photo is required"
+    }
+
 
     if (!mobile) {
         errors.mobile = "Mobile number is required";

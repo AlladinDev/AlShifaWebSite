@@ -1,5 +1,5 @@
 import { Facebook, Twitter, Linkedin, Mail, Phone } from "lucide-react";
-import { User } from "../Auth/Register/User";
+
 
 export default function Footer() {
   return (

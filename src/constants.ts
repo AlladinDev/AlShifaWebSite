@@ -6,12 +6,13 @@ export const FetchClinicsUrl = BaseApi + "/clinics/details"
 export const FetchDoctorsUrl = BaseApi + "/doctor/details"
 export const FetchBookedSlotsUrl = BaseApi + "/clinic/appointments/full"
 export const RegisterUserUrl = BaseApi + "/user"
-export const RegisterDoctorURL = BaseApi + "/doctor"
-export const RegisterOwnerURL= BaseApi + "/user"
-export const LoginDoctorURL= BaseApi + "/doctor/login"
-export const LoginOwnerURL= BaseApi + "/owner/login"
-export const LoginUserURL= BaseApi + "/user/login"
-
+export const RegisterDoctorURL = BaseApi + "/doctor/otp"
+export const RegisterOwnerURL = BaseApi + "/owner/otp"
+export const VerifyOwnerRegistrationURL = BaseApi + "/owner/otp/verify"
+export const LoginDoctorURL = BaseApi + "/doctor/login"
+export const LoginOwnerURL = BaseApi + "/owner/login"
+export const LoginUserURL = BaseApi + "/user/login"
+export const VerifyDoctorRegistrationURL = BaseApi + "/doctor/otp/verify"
 
 //const limits for validation
 // ---- Limits (adjust as needed) ----

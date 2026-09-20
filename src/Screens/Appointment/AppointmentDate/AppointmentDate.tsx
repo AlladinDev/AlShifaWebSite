@@ -53,7 +53,7 @@ export const AppointmentDateSelector = () => {
 
             }
             catch (err) {
-                console.log(err?.cause)
+                console.log(err)
             }
 
         }

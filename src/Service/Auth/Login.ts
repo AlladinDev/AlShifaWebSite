@@ -1,31 +1,31 @@
-import { LoginDoctorURL,LoginOwnerURL,LoginUserURL } from "@/constants"
+import { LoginDoctorURL, LoginOwnerURL, LoginUserURL } from "@/constants"
 import { ThunderApi } from "../Axios"
 
-export const LoginDoctor=async(loginDetails:Record<string,string>):Promise<Error|null>=>{
-    try{
-        await ThunderApi(loginDetails,LoginDoctorURL,"post")
-        return null
+export const LoginDoctor = async (otpUrl:string): Promise<Error | null | any> => {
+    try {
+        return ThunderApi(otpUrl, LoginDoctorURL, "post")
+       
     }
-    catch(err){
+    catch (err) {
+
         throw err
     }
 }
 
-export const LoginUser=async(loginDetails:Record<string,string>):Promise<Error|null>=>{
-    try{
-        await ThunderApi(loginDetails,LoginUserURL,"post")
-        return null
+export const LoginUser = async (otpUrl:string): Promise<Error | null | any> => {
+    try {
+        return  ThunderApi(otpUrl, LoginUserURL, "post")
     }
-    catch(err){
+    catch (err) {
         throw err
     }
 }
-export const LoginOwner=async(loginDetails:Record<string,string>):Promise<Error|null>=>{
-    try{
-        await ThunderApi(loginDetails,LoginOwnerURL,"post")
-        return null
+export const LoginOwner = async (otpUrl:string): Promise<Error | null | any> => {
+    try {
+        return  ThunderApi(otpUrl, LoginOwnerURL, "post")
+       
     }
-    catch(err){
+    catch (err) {
         throw err
     }
 }
