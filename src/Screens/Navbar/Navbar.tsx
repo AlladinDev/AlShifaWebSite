@@ -1,79 +1,106 @@
-import { Button } from "@/components/ui/button"
-import { Menu } from "lucide-react"
-import cliniclogo from "../../../public/clinic.jpg"
-import { useState } from "react"
+import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
+import cliniclogo from "../../../public/clinic.jpg";
+import { useState } from "react";
 
-import { Login } from "../Auth/Login/Login"
-import { useNavigate } from "react-router-dom"
+import { Login } from "../Auth/Login/Login";
+import { useNavigate } from "react-router-dom";
 type navMiddleItemsType = {
-    ItemName: string
-}
+  ItemName: string;
+  NavigationURL: string;
+};
 export const Navbar = () => {
-    const navItemSelectedStyling = "relative before:absolute before:-bottom-1 before:rounded-full before:w-full before:bg-primary before:h-1"
-    const navigate = useNavigate()
-    const [sideBarOpened, setSideBarOpened] = useState(false)
-    const [selectedNavItem, selectNavItem] = useState("Home")
-    const navItems: navMiddleItemsType[] = [
-        {
-            ItemName: "Home",
+  const navItemSelectedStyling =
+    "relative before:absolute before:-bottom-1 before:rounded-full before:w-full before:bg-primary before:h-1";
+  const navigate = useNavigate();
+  const [sideBarOpened, setSideBarOpened] = useState(false);
+  const [selectedNavItem, selectNavItem] = useState("Home");
+  const navItems: navMiddleItemsType[] = [
+    {
+      ItemName: "Home",
+      NavigationURL: "/",
+    },
+    {
+      ItemName: "Services",
+      NavigationURL: "/services",
+    },
+    {
+      ItemName: "About",
+      NavigationURL: "/about",
+    },
+    {
+      ItemName: "Contact",
+      NavigationURL: "/contact",
+    },
+  ];
 
-        },
-        {
-            ItemName: "Services",
+  return (
+    <header className="header font-medium  rounded-md sticky top-2 z-20 duration-900 ">
+      <div className="text-(--text-black-foreground) h-17.5 flex items-center justify-between  rounded-md px-10  bg-(--black-colour)">
+        <div
+          onClick={() => navigate("/")}
+          className="w-full max-w-60 cursor-pointer lg:w-1/8 text-center bg-primary relative -mb-2 -mt-1.5 inline-block rounded-b-sm  px-6 py-7  before:absolute before:-right-1 before:top-0.5 before:-z-1 before:size-2 before:rotate-45 before:bg-primary after:absolute after:-left-1 after:top-0.5 after:-z-1 after:size-2 after:rotate-45 after:bg-primary  after:block"
+        >
+          <h1 className="font-bold text-md flex justify-center items-center gap-2">
+            <img src={cliniclogo} className="size-8 rounded-full" /> AlShifa
+          </h1>
+        </div>
+        <div className="hidden  cursor-pointer lg:block ">
+          <ul className="flex  justify-around  transition-all duration-900 items-center gap-12">
+            {navItems.map((item, key) => (
+              <li
+                key={key}
+                onClick={() => {
+                  selectNavItem(item.ItemName);
+                  navigate(item.NavigationURL);
+                }}
+                className={`${item.ItemName == selectedNavItem ? navItemSelectedStyling : ""}`}
+              >
+                {item.ItemName}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className=" cursor-pointer w-80 flex justify-end   gap-2 lg:justify-end items-center ">
+          <div className="hidden  w-full lg:flex gap-4 max-w-62.5 h-full ">
+            <Button
+              className="flex-1  py-6 text-xl"
+              onClick={() => navigate("/onboarding")}
+            >
+              Register
+            </Button>
+            <Button className="flex-1 py-6 text-xl">Dashboard</Button>
+          </div>
+          <Menu
+            onClick={() => setSideBarOpened(!sideBarOpened)}
+            className="lg:hidden"
+            size={35}
+          />
+        </div>
+        <div
+          className={`shadow-md px-2 shadow-gray-200 border border-gray-500 overflow-hidden bg-[#bddcf4]  text-black z-50  absolute  rounded-md transition-all duration-700 whitespace-nowrap  h-0 ${sideBarOpened ? "w-[90%] h-dvh" : "w-0 h-0"}  top-0 right-0`}
+        >
+          <Button
+            className="m-4 p-6 "
+            onClick={() => setSideBarOpened(!sideBarOpened)}
+          >
+            <Menu className="size-10 " />
+          </Button>
+          <div className="flex justify-center items-center flex-col">
+            <ul className="flex font-bold  justify-center  flex-col transition-all duration-900 items-center gap-12">
+              {navItems.map((item, key) => (
+                <li key={key}>{item.ItemName}</li>
+              ))}
+            </ul>
 
-        },
-        {
-            ItemName: "About",
-
-        },
-        {
-            ItemName: "Contact",
-
-        }
-    ]
-
-
-
-    return (
-        <header className="header font-medium  rounded-md sticky top-2 z-20 duration-900 ">
-            <div className="text-(--text-black-foreground) flex items-center justify-between  rounded-md px-10  bg-(--black-colour)">
-                <div className="w-full max-w-60  lg:w-1/8 text-center bg-primary relative -mb-2 -mt-1.5 inline-block rounded-b-sm  px-6 py-7  before:absolute before:-right-1 before:top-0.5 before:-z-1 before:size-2 before:rotate-45 before:bg-primary after:absolute after:-left-1 after:top-0.5 after:-z-1 after:size-2 after:rotate-45 after:bg-primary  after:block">
-                    <h1 className="font-bold text-md flex justify-center items-center gap-2"><img src={cliniclogo} className="size-8 rounded-full" />  AlShifa</h1>
-                </div>
-                <div className="hidden  cursor-pointer lg:block ">
-                    <ul className="flex  justify-around  transition-all duration-900 items-center gap-12">
-                        {navItems.map((item, key) => (
-                            <li key={key} onClick={() => selectNavItem(item.ItemName)} className={`${item.ItemName == selectedNavItem ? navItemSelectedStyling : ""}`}>{item.ItemName}</li>
-                        ))}
-                    </ul>
-                </div>
-                <div className=" cursor-pointer w-80 flex justify-end   gap-2 lg:justify-end items-center ">
-                    <div className="hidden  w-full lg:flex gap-4 max-w-62.5 h-full ">
-                        <Button className="flex-1  py-6 text-xl" onClick={() => navigate('/onboarding')}>Register</Button>
-                        <Button className="flex-1 py-6 text-xl" >Dashboard</Button>
-                    </div>
-                    <Menu onClick={() => setSideBarOpened(!sideBarOpened)} className="lg:hidden" size={35} />
-                </div>
-                <div className={`shadow-md px-2 shadow-gray-200 border border-gray-500 overflow-hidden bg-[#bddcf4]  text-black z-50  absolute  rounded-md transition-all duration-700 whitespace-nowrap  h-0 ${sideBarOpened ? "w-[90%] h-dvh" : "w-0 h-0"}  top-0 right-0`}>
-                    <Button className="m-4 p-6 " onClick={() => setSideBarOpened(!sideBarOpened)}><Menu className="size-10 " /></Button>
-                    <div className="flex justify-center items-center flex-col">
-
-                        <ul className="flex font-bold  justify-center  flex-col transition-all duration-900 items-center gap-12">
-                            {navItems.map((item, key) => (
-                                <li key={key} >{item.ItemName}</li>
-                            ))}
-                        </ul>
-
-                        <div className="space-y-4 flex w-full mt-4 flex-col justify-center items-center">
-                            <Button onClick={() => navigate("/onboarding")} />
-                            <Login />
-                        </div>
-                    </div>
-                    <div></div>
-                </div>
-
+            <div className="space-y-4 flex w-full mt-4 flex-col justify-center items-center">
+              <Button onClick={() => navigate("/onboarding")} />
+              <Login />
             </div>
-        </header>
-
-    )
-}
+          </div>
+          <div></div>
+        </div>
+      </div>
+    </header>
+  );
+};

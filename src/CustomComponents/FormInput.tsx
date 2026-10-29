@@ -25,7 +25,7 @@ export const FormInput = (props: IFormInput) => {
                 {props.icon ? <span className="absolute left-3 top-[52%]  text-gray-400">
                     {props.icon}
                 </span> : null}
-                <Input className="pl-9 mb-2 border border-gray-400" name={props.name} placeholder={props.placeHolder ? props.placeHolder : ""} value={props.value} onChange={handleChange} />
+                <Input className="pl-4 mb-2 border border-gray-400" name={props.name} placeholder={props.placeHolder ? props.placeHolder : ""} value={props.value} onChange={handleChange} />
             </div>
             {props.error ? <span className="text-red-600">{props.error}</span> : null}
 
