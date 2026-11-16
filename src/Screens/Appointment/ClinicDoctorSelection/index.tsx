@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FormInput } from "@/CustomComponents/FormInput";
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
@@ -34,7 +33,9 @@ export const ClinicDoctorSelection = () => {
     selectTab(tabName);
   };
 
-  const changeHandler = (data: { key: string; value: unknown }) => {};
+  const changeHandler = (data: { key: string; value: unknown }) => {
+    console.log(data)
+  };
   return (
     <div className="">
       <div>
