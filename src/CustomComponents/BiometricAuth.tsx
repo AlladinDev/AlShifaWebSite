@@ -120,12 +120,12 @@ export function BiometricAuth({
             <>
               <Scanner status={status} onClick={() => run(onScan, "Place your finger on the sensor when your phone asks.")} disabled={busy || !supported} />
               <p role="status" aria-live="polite" className={`mx-auto mt-5 min-h-[2.5rem] max-w-xs text-center text-sm ${tone}`}>
-                {supported ? msg || "Tap the sensor to begin." : "No fingerprint sensor found. Use another method below."}
+                {supported ? msg || "Tap the sensor to begin If you have Already Registered Your Fingerprint." : "No fingerprint sensor found. Use another method below."}
               </p>
               {onEnroll && supported && !busy && (
                 <button type="button" onClick={() => run(onEnroll, "Setting up this phone. Touch the sensor when asked.")}
-                  className="mx-auto mb-2 block text-xs font-medium text-teal-200 underline-offset-4 hover:underline">
-                  First time on this phone? Set up fingerprint
+                  className="mx-auto  my-6 cursor-pointer block text-xs font-medium text-teal-200 underline-offset-4 hover:underline">
+                  New User ? Click on This Link
                 </button>
               )}
               {fallbacks.length > 0 && (
@@ -162,7 +162,7 @@ export function BiometricAuth({
         </section>
 
         {/* Guidelines — left column (below header) on desktop, under the scanner on mobile */}
-        <ul className="relative space-y-3 rounded-2xl bg-white/[.04] p-4 ring-1 ring-white/10 lg:col-start-1 lg:row-start-2 lg:self-start">
+        <ul className="relative space-y-3 rounded-2xl bg-white/4 p-4 ring-1 ring-white/10 lg:col-start-1 lg:row-start-2 lg:self-start">
           {guidelines.map(({ icon: Icon, title, body }) => (
             <li key={title} className="flex gap-3">
               <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-teal-300/10 text-teal-300"><Icon className="h-4 w-4" /></span>
