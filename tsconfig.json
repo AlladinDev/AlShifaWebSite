@@ -9,6 +9,8 @@
     }
   ],
   "compilerOptions": {
+    "strictNullChecks": true,
+    "exactOptionalPropertyTypes": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]

@@ -5,11 +5,11 @@ type ErrorResponse = {
   statusCode?: number;
 };
 
-export const ExtractErrorPayload = (err: any): ErrorResponse => {
-
+export const ExtractErrorPayload = (err: unknown): ErrorResponse => {
+  const { response } = err as { response: { data: { message: string,cause:string,statusCode:number } } }
   return {
-    message: err?.response?.data?.message ?? "Unknown Error",
-    reason: err?.response?.data?.cause ?? "Unknown Reason",
-    statusCode:err?.response?.data?.statusCode??500
+    message: response?.data?.message ?? "Unknown Error",
+    reason: response?.data?.cause ?? "Unknown Reason",
+    statusCode:response?.data?.statusCode??500
   };
 };

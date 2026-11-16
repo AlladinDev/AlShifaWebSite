@@ -1,31 +1,21 @@
-import { LoginDoctorURL, LoginOwnerURL, LoginUserURL } from "@/constants"
+import { LoginDoctorURL, LoginOwnerURL, LoginUserURL, VerifyUserLoginURL } from "@/constants"
 import { ThunderApi } from "../Axios"
+import type { ApiResponse } from "@/Types/ApiResponse"
 
-export const LoginDoctor = async (otpUrl:string): Promise<Error | null | any> => {
-    try {
+export const LoginDoctor = async (otpUrl:string): ApiResponse => {
         return ThunderApi(otpUrl, LoginDoctorURL, "post")
-       
-    }
-    catch (err) {
-
-        throw err
-    }
 }
 
-export const LoginUser = async (otpUrl:string): Promise<Error | null | any> => {
-    try {
-        return  ThunderApi(otpUrl, LoginUserURL, "post")
-    }
-    catch (err) {
-        throw err
-    }
+export const UserLogin = async (mobileNumber: string): ApiResponse => {
+  console.log("type of mobile number is ",typeof(mobileNumber),mobileNumber)
+    return ThunderApi(mobileNumber,LoginUserURL,"post")
 }
-export const LoginOwner = async (otpUrl:string): Promise<Error | null | any> => {
-    try {
+
+
+export const VerifyUserLogin = async (otp: number):ApiResponse=> {
+  return ThunderApi(otp,VerifyUserLoginURL,"post")
+}
+
+export const LoginOwner = async (otpUrl:string): ApiResponse => {
         return  ThunderApi(otpUrl, LoginOwnerURL, "post")
-       
-    }
-    catch (err) {
-        throw err
-    }
 }

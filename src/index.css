@@ -9,6 +9,7 @@
   --background: #ffffff;
   --foreground: #0f1419;
   --card: #FFFFFF;
+  --grayish:#808080;
   --card-foreground: #0f1419;
   --text-black-foreground:#FFFFFF;
   --black-colour:#13182F;
@@ -64,6 +65,7 @@
 }
 
 .dark {
+  --grayish:#ffffff;
   --background: #000000;
   --foreground: #e7e9ea;
   --card: #17181c;

@@ -1,5 +1,6 @@
 import { MaxApiRetries, RetryDelay } from "@/constants"
-import axios, { HttpStatusCode, type AxiosResponse } from "axios"
+import type { ApiResponse } from "@/Types/ApiResponse"
+import axios, { HttpStatusCode } from "axios"
 
 
 const getHeaderValue = (): string => {
@@ -14,46 +15,43 @@ export const Api = axios.create({
         Authorization: getHeaderValue(),
     },
     withCredentials: true,
-
-
 })
 
-Api.interceptors.response.use(res => {
-    
-    const { data } = res
-    if (!data || typeof (data) != "object") {
-        return res
-    }
+// Api.interceptors.response.use(res => {
 
-    const { data: token } = data
-    if (!token || typeof (token) != "string") {
-        return res
-    }
+//     // const { data } = res
+//     // if (!data || typeof (data) != "object") {
+//     //     return res
+//     // }
 
-    //it means that data is actually login token so then save it in cookies
-    if (token.toLocaleLowerCase().includes("bearer")) {
-        document.cookie = "authToken =" + token 
-    }
+//     // const { data: token } = data
+//     // if (!token || typeof (token) != "string") {
+//     //     return res
+//     // }
 
-    return res
+//     // //it means that data is actually login token so then save it in cookies
+//     // if (token.toLocaleLowerCase().includes("bearer")) {
+//     //     document.cookie = "authToken =" + token
+//     // }
 
-})
+//     // return res
+
+// })
 
 
 type httpMethods = "get" | "post" | "delete" | "put"
 const statusesNotToBeRetries = [404, 500, 403, 400, HttpStatusCode.Conflict]
 
-export const ThunderApi = (data: any, url: string, method: httpMethods,  maxAttempts: number = MaxApiRetries): Promise<AxiosResponse> => {
+export const ThunderApi = (data: unknown, url: string, method: httpMethods,  maxAttempts: number = MaxApiRetries):ApiResponse => {
     let retries = 0;
     return new Promise((resolve, reject) => {
         const attempt = async () => {
             try {
-                let response: AxiosResponse;
+                let response: Awaited<ApiResponse>;
                 switch (method) {
                     case "get":
                         //inside get data is actually key value based query params so construct it
-
-                        response = await Api.get(url);
+                        response = await Api.get(url) ;
                         break;
                     case "post":
                         response = await Api.post(url, data);
@@ -67,7 +65,6 @@ export const ThunderApi = (data: any, url: string, method: httpMethods,  maxAtte
                 }
                 resolve(response); // success → resolve
             } catch (err) {
-
                 if (axios.isAxiosError(err)) {
                     if (!err?.response) {
                         //response not present it can be cors error or any other such error
@@ -96,4 +93,3 @@ export const ThunderApi = (data: any, url: string, method: httpMethods,  maxAtte
         attempt();
     });
 };
-

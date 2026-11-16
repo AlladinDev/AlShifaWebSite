@@ -1,5 +1,5 @@
 
-export const BaseApi = "http://localhost:8000/v1"
+export const BaseApi = "http://localhost:8090/v1"
 export const MaxApiRetries = 5
 export const RetryDelay = 1
 export const FetchClinicsUrl = BaseApi + "/clinics/details"
@@ -11,9 +11,9 @@ export const RegisterOwnerURL = BaseApi + "/owner/otp"
 export const VerifyOwnerRegistrationURL = BaseApi + "/owner/otp/verify"
 export const LoginDoctorURL = BaseApi + "/doctor/login"
 export const LoginOwnerURL = BaseApi + "/owner/login"
-export const LoginUserURL = BaseApi + "/user/login"
+export const LoginUserURL = BaseApi + "/user"
 export const VerifyDoctorRegistrationURL = BaseApi + "/doctor/otp/verify"
-
+export const VerifyUserLoginURL= BaseApi + "/user/verify"
 //const limits for validation
 // ---- Limits (adjust as needed) ----
 export const LIMITS = {
